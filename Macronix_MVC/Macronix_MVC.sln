@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macronix_MVC", "Macronix_MVC\Macronix_MVC.csproj", "{ECCDA981-BE1D-411E-9807-5E8083F41E1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECCDA981-BE1D-411E-9807-5E8083F41E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCDA981-BE1D-411E-9807-5E8083F41E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCDA981-BE1D-411E-9807-5E8083F41E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCDA981-BE1D-411E-9807-5E8083F41E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54137B3B-17A6-4803-AB64-5DEE7C4E6CF6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,90 @@
+﻿@model List<Macronix_MVC.Models.PeopleForm>
+@using System.Globalization
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>People Forms</h2>
+
+<!-- Form to create a new person -->
+@using (Html.BeginForm("Create", "PeopleoForm", FormMethod.Post, new { id = "createForm" }))
+{
+    <div>
+        <label>姓名:</label>
+        @Html.TextBox("Name", null, new { id = "nameField" })
+    </div>
+    <div>
+        <label>年齡:</label>
+        @Html.TextBox("Age", null, new { id = "ageField" })
+    </div>
+    <div>
+        <label>生日:</label>
+        @Html.TextBox("Date", null, new { id = "dateField" })
+    </div>
+    <button type="button" onclick="validateForm()">創建帳號</button>
+}
+
+<hr />
+
+<!-- Table to display existing people forms -->
+@if (Model.Any())
+{
+    <table style="border: 1px solid black;">
+        <tr>
+            <th style="border: 1px solid black;">姓名</th>
+            <th style="border: 1px solid black;">年齡</th>
+            <th style="border: 1px solid black;">生日</th>
+            <th style="border: 1px solid black;">操作</th>
+        </tr>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td style="border: 1px solid black;">@person.Name</td>
+                <td style="border: 1px solid black;">@person.Age</td>
+                <td style="border: 1px solid black;">@(DateTime.ParseExact(person.Date, "yyyy/MM/dd", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"))</td>
+
+
+
+                <td style="border: 1px solid black;">
+                    <button href="javascript:void(0);" onclick="editPerson('@person.Name', '@person.Age', '@person.Date')">修改</button> 
+                    <form action="@Url.Action("Delete", "PeopleoForm")" method="post">
+                        <input type="hidden" name="index" value="@Model.IndexOf(person)">
+                        <button type="submit">刪除</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("nameField").value;
+        var age = document.getElementById("ageField").value;
+        var date = document.getElementById("dateField").value;
+
+        if (name === "" || age === "" || date === "") {
+            alert("必填欄位");
+        } else {
+            document.getElementById("createForm").submit();
+        }
+    }
+
+    function editPerson(name, age, date) {
+        document.getElementById("nameField").value = name;
+        document.getElementById("ageField").value = age;
+        document.getElementById("dateField").value = date;
+
+        var form = document.getElementById("createForm");
+        form.action = "@Url.Action("Edit", "PeopleoForm")";
+        var button = form.querySelector("button");
+        button.innerHTML = "修改帳號";
+    }
+
+    function deletePerson(index) {
+        if (confirm("確定要刪除嗎？")) {
+            window.location.href = "/PeopleoForm/Delete?index=" + index;
+        }
+    }
+</script>

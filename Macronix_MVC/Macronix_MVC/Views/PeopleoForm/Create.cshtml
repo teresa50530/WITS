@@ -1,0 +1,37 @@
+﻿@model Macronix_MVC.Models.PeopleForm
+
+@{
+    ViewBag.Title = Model.IsEditMode ? "Edit Person" : "Create Person";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(Model.IsEditMode ? "Edit" : "Create", "PeopleoForm", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Age)
+        @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Age)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Date)
+        @Html.TextBoxFor(model => model.Date, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Date)
+    </div>
+
+    if (Model.IsEditMode)
+    {
+        @Html.HiddenFor(model => model.Id)
+    }
+
+    <button type="submit" class="btn btn-primary">@(Model.IsEditMode ? "Save Changes" : "Create Account")</button>
+}
